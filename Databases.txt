@@ -1,1 +1,46 @@
+#goal table
+CREATE TABLE goal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    credits INT,
+    probability INT
+);
 
+#game table
+CREATE TABLE game (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    credits INT,
+    player_range INT,
+    location VARCHAR(10),
+    screen_name VARCHAR(50),
+    chrono_shards INT DEFAULT 0
+);
+
+#Inserting goals
+INSERT INTO goal (name, credits, probability) VALUES
+('Chrono Shard', 0, 5),
+('Paradox Trap', -750, 3),
+('Artifact Cache', 500, 4);
+
+#create ports table
+CREATE TABLE ports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    game INT,
+    airport VARCHAR(10),
+    goal INT
+);
+
+
+#Add era to airport table
+ALTER TABLE airport ADD COLUMN era VARCHAR(20) DEFAULT 'MODERN';
+
+
+#Set random eras
+UPDATE airport 
+SET era = CASE 
+    WHEN RAND() < 0.25 THEN 'ANCIENT'
+    WHEN RAND() < 0.33 THEN 'MEDIEVAL' 
+    WHEN RAND() < 0.5 THEN 'FUTURE'
+    ELSE 'MODERN'
+END
+WHERE continent = 'EU' AND type = 'large_airport';
