@@ -1,5 +1,11 @@
-#chrono quest
-#function part 1
-#functions part 2
-#game part 1
-#game part 2
+#database connection
+#eras(energy consumption)
+#get 15 random airports(function)
+#get all goals(function)
+#create a new game(function)
+#getting airport info(function)
+#checking goals(function)
+#calculate distance(function)
+#airports in range(function)
+#update game(function)
+#game state(function)
