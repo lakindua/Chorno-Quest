@@ -150,7 +150,18 @@ won = False
 
 print(f"\nCollect {REQUIRED_SHARDS} Chrono Shards and return to start!")
 
+while not game_over:
+    airport_info = get_airport_info(current_airport)
+    game_state = get_game_state(game_id)
 
+    credits = game_state['credits']
+    player_range = game_state['player_range']
+    shards = game_state['chrono_shards']
+    era = airport_info['era']
 
+    print(f"\n {airport_info['name']} ({era})")
+    print(f" Credits: {credits} |  Range: {player_range:.0f}km")
+    print(f" Shards: {shards}/{REQUIRED_SHARDS}")
 
+    
 
