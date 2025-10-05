@@ -130,6 +130,26 @@ def get_game_state(game_id):
     return cursor.fetchone()
 
 
+# MAIN GAME
+big_text = pyfiglet.figlet_format("Chrono Quest")
+print(big_text)
+player_name = input("Enter your name: ")
+
+START_CREDITS = 15000
+START_RANGE = 2500
+REQUIRED_SHARDS = 5
+
+airports = get_airports()
+start_airport = airports[0]['ident']
+current_airport = start_airport
+
+game_id = create_game(START_CREDITS, START_RANGE, start_airport, player_name, airports)
+
+game_over = False
+won = False
+
+print(f"\nCollect {REQUIRED_SHARDS} Chrono Shards and return to start!")
+
 
 
 
