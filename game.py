@@ -163,5 +163,38 @@ while not game_over:
     print(f" Credits: {credits} |  Range: {player_range:.0f}km")
     print(f" Shards: {shards}/{REQUIRED_SHARDS}")
 
+    # Check for goal
+    goal = check_goal(game_id, current_airport)
+    if goal:
+        print(f"\n Found: {goal['name']}!")
+
+        if goal['name'] == 'Chrono Shard':
+            if shards < REQUIRED_SHARDS:
+                shards += 1
+                print(f" Collected Chrono Shard! ({shards}/{REQUIRED_SHARDS})")
+                # Remove shard
+                cursor = conn.cursor()
+                cursor.execute("DELETE FROM ports WHERE game = %s AND airport = %s", (game_id, current_airport))
+        elif goal['name'] == 'Paradox Trap':
+            credits = max(0, credits + goal['credits'])
+            print(f" Lost {abs(goal['credits'])} credits!")
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM ports WHERE game = %s AND airport = %s", (game_id, current_airport))
+        elif goal['name'] == 'Artifact Cache':
+            credits += goal['credits']
+            print(f" Gained {goal['credits']} credits!")
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM ports WHERE game = %s AND airport = %s", (game_id, current_airport))
+
+
+        update_game(game_id, current_airport, player_range, credits, shards)
+
+    # Win condition
+    if shards >= REQUIRED_SHARDS and current_airport == start_airport:
+        print(f"\n You won! All shards collected!")
+        won = True
+        game_over = True
+        continue
+
     
 
