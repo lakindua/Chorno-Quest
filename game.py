@@ -233,7 +233,7 @@ while not game_over:
     # Travel
     choice = input(f"\n Enter ICAO or 'Q' to quit: ").upper()
 
-        if choice == 'Q':
+    if choice == 'Q':
         game_over = True
         continue
 
