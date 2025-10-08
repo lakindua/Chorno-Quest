@@ -143,6 +143,7 @@ start_airport = airports[0]['ident']
 current_airport = start_airport
 
 game_id = create_game(START_CREDITS, START_RANGE, start_airport, player_name, airports)
+visited_airports = [start_airport]
 
 game_over = False
 won = False
@@ -214,14 +215,18 @@ while not game_over:
     # Show destinations
     destinations = airports_in_range(current_airport, airports, player_range)
 
-    if not destinations:
-        print("\n No airports in range! Game Over!")
+        if not destinations:
+        print("\nNo airports in range! Game Over!")
         game_over = True
         continue
 
-    print(f"\n Destinations:")
+    print(f"\nDestinations:")
     for ap in destinations:
-        print(f"   {ap['ident']} - {ap['name']} ({ap['era']}) - {ap['distance']:.0f}km")
+        visited_tag = ""
+        if ap['ident'] in visited_airports:
+            visited_tag = "(visited)"
+
+        print(f"   {ap['ident']} - {ap['name']} ({ap['era']}) - {ap['distance']:.0f}km {visited_tag}")
 
     # Travel
     choice = input(f"\n Enter ICAO or 'Q' to quit: ").upper()
