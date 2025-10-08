@@ -198,7 +198,7 @@ while not game_over:
         continue
 
     # Buy fuel
-        if credits > 0:
+    if credits > 0:
         fuel = input(f"\n Buy energy? (1 credit = 2km). Amount or Enter to skip: ")
         if fuel:
             try:
@@ -213,10 +213,11 @@ while not game_over:
             except:
                 print(" Invalid input")
 
+
     # Show destinations
     destinations = airports_in_range(current_airport, airports, player_range)
 
-        if not destinations:
+    if not destinations:
         print("\nNo airports in range! Game Over!")
         game_over = True
         continue
