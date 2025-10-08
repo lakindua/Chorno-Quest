@@ -55,7 +55,6 @@ def create_game(credits, player_range, location, name, airports):
             goal_list.append(goal['id'])
 
     available_airports = [ap for ap in airports if ap['ident'] != location]
-    random.shuffle(available_airports)
 
     for i, goal_id in enumerate(goal_list):
         if i < len(available_airports):
