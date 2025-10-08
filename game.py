@@ -231,7 +231,7 @@ while not game_over:
     # Travel
     choice = input(f"\n Enter ICAO or 'Q' to quit: ").upper()
 
-    if choice == 'Q':
+        if choice == 'Q':
         game_over = True
         continue
 
@@ -244,10 +244,14 @@ while not game_over:
     if selected:
         player_range -= selected['distance']
         current_airport = selected['ident']
+
+        if current_airport not in visited_airports:
+            visited_airports.append(current_airport)
+
         update_game(game_id, current_airport, player_range, credits, shards)
-        print(f" Traveled to {selected['name']}")
+        print(f"Traveled to {selected['name']}")
     else:
-        print(" Invalid choice")
+        print("Invalid choice")
 
 
 
