@@ -196,5 +196,66 @@ while not game_over:
         game_over = True
         continue
 
+    # Buy fuel
+    if credits > 0:
+        fuel = input(f"\n Buy energy? (1 credit = 2km). Amount or Enter to skip: ")
+        destinations = airports_in_range(current_airport, airports, player_range)
+        fuel_str = str(fuel)
+        if fuel_str == '':
+            # Show destinations
+
+
+            if not destinations:
+                print("\n No airports in range! Game Over!")
+                game_over = True
+                continue
+
+            print(f"\n Destinations:")
+            for ap in destinations:
+                print(f"   {ap['ident']} - {ap['name']} ({ap['era']}) - {ap['distance']:.0f}km")
+        else:
+            fuel_amount = float(fuel)
+            if fuel_amount <= credits:
+                player_range += fuel_amount * 2
+                credits -= fuel_amount
+                print(f" Added {fuel_amount * 2:.0f}km range")
+                update_game(game_id, current_airport, player_range, credits, shards)
+            elif fuel_amount > credits:
+                print(" Not enough credits!")
+
+
+            elif credits <= 0:
+                # Travel
+                choice = input(f"\n Enter ICAO or 'Q' to quit: ").upper()
+
+                if choice == 'Q':
+                    game_over = True
+                    continue
+
+                destination_found = False
+                for ap in destinations:
+                    if ap['ident'] == choice:
+                        player_range -= ap['distance']
+                        current_airport = ap['ident']
+                        update_game(game_id, current_airport, player_range, credits, shards)
+                        print(f" Traveled to {ap['name']}")
+                        destination_found = True
+                        break
+
+                if not destination_found:
+                    print(" Invalid choice")
+
+
+            else:
+                print(" Invalid input")
+
+
+
+# Game over
+print(f"\n{' You won!' if won else ' Game Over'}")
+final_state = get_game_state(game_id)
+print(
+    f"Final - Credits: {final_state['credits']}, Range: {final_state['player_range']:.0f}km, Shards: {final_state['chrono_shards']}/{REQUIRED_SHARDS}")
+
     
 
