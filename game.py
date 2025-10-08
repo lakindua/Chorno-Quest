@@ -151,6 +151,7 @@ won = False
 
 print(f"\nCollect {REQUIRED_SHARDS} Chrono Shards and return to start!")
 
+#game loop
 while not game_over:
     airport_info = get_airport_info(current_airport)
     game_state = get_game_state(game_id)
