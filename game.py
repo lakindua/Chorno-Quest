@@ -258,7 +258,10 @@ while not game_over:
 
 
 # Game over
-print(f"\n{' You won!' if won else ' Game Over'}")
+Won = pyfiglet.figlet_format("You won")
+Lost = pyfiglet.figlet_format("You Lost")
+print(f"\n{Won if won else Lost}")
+
 
     
 
