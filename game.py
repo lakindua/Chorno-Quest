@@ -259,9 +259,6 @@ while not game_over:
 
 # Game over
 print(f"\n{' You won!' if won else ' Game Over'}")
-final_state = get_game_state(game_id)
-print(
-    f"Final - Credits: {final_state['credits']}, Range: {final_state['player_range']:.0f}km, Shards: {final_state['chrono_shards']}/{REQUIRED_SHARDS}")
 
     
 
