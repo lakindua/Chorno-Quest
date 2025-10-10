@@ -1,3 +1,8 @@
+#create a new database with the airport file.
+#first drop goal,goal_reached,game tables.
+#then run below codes and create the new tables.
+
+
 #goal table
 CREATE TABLE goal (
     id INT AUTO_INCREMENT PRIMARY KEY,
