@@ -135,7 +135,7 @@ big_text = pyfiglet.figlet_format("Chrono Quest")
 print(big_text)
 player_name = input("Enter your name: ")
 
-START_CREDITS = 15000
+START_CREDITS = 25000
 START_RANGE = 2500
 REQUIRED_SHARDS = 5
 
