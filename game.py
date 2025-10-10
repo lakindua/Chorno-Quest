@@ -193,7 +193,6 @@ while not game_over:
 
     # Win condition
     if shards >= REQUIRED_SHARDS and current_airport == start_airport:
-        print(f"\n You won! All shards collected!")
         won = True
         game_over = True
         continue
